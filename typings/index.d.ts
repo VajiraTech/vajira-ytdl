@@ -1,4 +1,4 @@
-declare module 'ytdl-core' {
+declare module '@distube/ytdl-core' {
   import { ClientRequest } from 'http';
   import { Readable } from 'stream';
 

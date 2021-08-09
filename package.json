@@ -1,12 +1,12 @@
 {
-  "name": "ytdl-core",
+  "name": "@distube/ytdl-core",
   "description": "YouTube video downloader in pure javascript.",
   "keywords": [
     "youtube",
     "video",
     "download"
   ],
-  "version": "4.9.1",
+  "version": "4.9.2",
   "repository": {
     "type": "git",
     "url": "git://github.com/fent/node-ytdl-core.git"
