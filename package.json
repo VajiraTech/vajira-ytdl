@@ -7,7 +7,7 @@
     "download",
     "distube"
   ],
-  "version": "4.11.8",
+  "version": "4.11.9",
   "repository": {
     "type": "git",
     "url": "git://github.com/distubejs/ytdl-core.git"
@@ -39,7 +39,7 @@
     "m3u8stream": "^0.8.6",
     "miniget": "^4.2.2",
     "sax": "^1.2.4",
-    "undici": "^5.21.2"
+    "undici": "^5.22.0"
   },
   "devDependencies": {
     "@types/node": "^18.15.11",
