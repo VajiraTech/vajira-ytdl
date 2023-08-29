@@ -37,7 +37,6 @@
   },
   "dependencies": {
     "m3u8stream": "^0.8.6",
-    "miniget": "^4.2.3",
     "sax": "^1.2.4",
     "undici": "^5.22.1"
   },

@@ -8,7 +8,7 @@ declare module '@distube/ytdl-core' {
     interface getInfoOptions {
       lang?: string;
       requestCallback?: () => {};
-      requestOptions?: {};
+      requestOptions?: Parameters<typeof request>[1];
     }
 
     interface chooseFormatOptions {
