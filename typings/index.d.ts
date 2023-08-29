@@ -1,14 +1,21 @@
 declare module '@distube/ytdl-core' {
-  import { ClientRequest } from 'http';
+  import { Dispatcher, ProxyAgent, request } from 'undici';
+  import { CookieJar } from 'tough-cookie';
   import { Readable } from 'stream';
 
   namespace ytdl {
     type Filter = 'audioandvideo' | 'videoandaudio' | 'video' | 'videoonly' | 'audio' | 'audioonly' | ((format: videoFormat) => boolean);
 
+    interface Agent {
+      jar: CookieJar;
+      dispatcher: Dispatcher;
+    }
+
     interface getInfoOptions {
       lang?: string;
       requestCallback?: () => {};
       requestOptions?: Parameters<typeof request>[1];
+      agent?: Agent;
     }
 
     interface chooseFormatOptions {
@@ -136,6 +143,7 @@ declare module '@distube/ytdl-core' {
       isPrivate: boolean;
       isUnpluggedCorpus: boolean;
       isLiveContent: boolean;
+      isLive: boolean;
     }
 
     interface Media {
@@ -408,6 +416,18 @@ declare module '@distube/ytdl-core' {
       isLive: boolean;
     }
 
+    interface Cookie {
+      name: string;
+      value: string;
+      expirationDate?: number;
+      domain?: string;
+      path?: string;
+      secure?: boolean;
+      httpOnly?: boolean;
+      hostOnly?: boolean;
+      sameSite?: string;
+    }
+
     function getBasicInfo(url: string, options?: getInfoOptions): Promise<videoInfo>;
     function getInfo(url: string, options?: getInfoOptions): Promise<videoInfo>;
     function downloadFromInfo(info: videoInfo, options?: downloadOptions): Readable;
@@ -417,6 +437,9 @@ declare module '@distube/ytdl-core' {
     function validateURL(string: string): boolean;
     function getURLVideoID(string: string): string | never;
     function getVideoID(string: string): string | never;
+    function createProxyAgent(options: ProxyAgent.Options | string, cookies?: Cookie[]): Agent;
+    function createProxyAgent(options: ProxyAgent.Options | string): Agent;
+    function createAgent(cookies?: Cookie[]): Agent;
     const version: number;
   }
 
