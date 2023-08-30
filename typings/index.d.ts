@@ -1,6 +1,6 @@
 declare module '@distube/ytdl-core' {
   import { Dispatcher, ProxyAgent, request } from 'undici';
-  import { CookieJar } from 'tough-cookie';
+  import { Cookie as CK, CookieJar } from 'tough-cookie';
   import { Readable } from 'stream';
 
   namespace ytdl {
@@ -437,9 +437,9 @@ declare module '@distube/ytdl-core' {
     function validateURL(string: string): boolean;
     function getURLVideoID(string: string): string | never;
     function getVideoID(string: string): string | never;
-    function createProxyAgent(options: ProxyAgent.Options | string, cookies?: Cookie[]): Agent;
+    function createProxyAgent(options: ProxyAgent.Options | string, cookies?: (Cookie | CK)[]): Agent;
     function createProxyAgent(options: ProxyAgent.Options | string): Agent;
-    function createAgent(cookies?: Cookie[]): Agent;
+    function createAgent(cookies?: (Cookie | CK)[]): Agent;
     const version: number;
   }
 
