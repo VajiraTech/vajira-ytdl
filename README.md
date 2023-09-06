@@ -32,37 +32,26 @@ ytdl.getInfo("http://www.youtube.com/watch?v=aqz-KE-bpKQ").then(info => {
 });
 ```
 
-### Proxy Support
-
-```js
-const ytdl = require("@distube/ytdl-core");
-
-const agent = ytdl.createProxyAgent({ uri: "my.proxy.server" });
-
-ytdl.getBasicInfo("http://www.youtube.com/watch?v=aqz-KE-bpKQ", { agent });
-ytdl.getInfo("http://www.youtube.com/watch?v=aqz-KE-bpKQ", { agent });
-```
-
 ### Cookies Support
 
 ```js
 const ytdl = require("@distube/ytdl-core");
 
-const agent = ytdl.createAgent([
+// (Optional) Below are examples, NOT the recommended options
+const cookies = [
   { name: "cookie1", value: "COOKIE1_HERE" },
   { name: "cookie2", value: "COOKIE2_HERE" },
-]);
+];
 
-ytdl.getBasicInfo("http://www.youtube.com/watch?v=aqz-KE-bpKQ", { agent });
-ytdl.getInfo("http://www.youtube.com/watch?v=aqz-KE-bpKQ", { agent });
-```
+// (Optional) http-cookie-agent / undici agent options
+// Below are examples, NOT the recommended options
+const agentOptions = {
+  pipelining: 5,
+  maxRedirections: 0,
+  localAddress: "127.0.0.1",
+};
 
-Use both proxy and cookies:
-
-```js
-const ytdl = require("@distube/ytdl-core");
-
-const agent = ytdl.createProxyAgent({ uri: "my.proxy.server" }, [{ name: "cookie", value: "COOKIE_HERE" }]);
+const agent = ytdl.createAgent(cookies, agentOptions);
 
 ytdl.getBasicInfo("http://www.youtube.com/watch?v=aqz-KE-bpKQ", { agent });
 ytdl.getInfo("http://www.youtube.com/watch?v=aqz-KE-bpKQ", { agent });
@@ -73,8 +62,8 @@ ytdl.getInfo("http://www.youtube.com/watch?v=aqz-KE-bpKQ", { agent });
 - Install [EditThisCookie](http://www.editthiscookie.com/) extension for your browser.
 - Go to [YouTube](https://www.youtube.com/).
 - Log in to your account. (You should use a new account for this purpose)
-- Click on the extension icon and click "Export".
-- Copy the content of the exported file and paste it into your code.
+- Click on the extension icon and click "Export" icon.
+- Your cookie will be added to your clipboard and paste it into your code.
 
 ```js
 const ytdl = require("@distube/ytdl-core");
@@ -101,6 +90,52 @@ const agent = ytdl.createAgent([
 const ytdl = require("@distube/ytdl-core");
 const fs = require("fs");
 const agent = ytdl.createAgent(JSON.parse(fs.readFileSync("cookies.json")));
+```
+
+### Proxy Support
+
+```js
+const ytdl = require("@distube/ytdl-core");
+
+const agent = ytdl.createProxyAgent({ uri: "my.proxy.server" });
+
+ytdl.getBasicInfo("http://www.youtube.com/watch?v=aqz-KE-bpKQ", { agent });
+ytdl.getInfo("http://www.youtube.com/watch?v=aqz-KE-bpKQ", { agent });
+```
+
+Use both proxy and cookies:
+
+```js
+const ytdl = require("@distube/ytdl-core");
+
+const agent = ytdl.createProxyAgent({ uri: "my.proxy.server" }, [{ name: "cookie", value: "COOKIE_HERE" }]);
+
+ytdl.getBasicInfo("http://www.youtube.com/watch?v=aqz-KE-bpKQ", { agent });
+ytdl.getInfo("http://www.youtube.com/watch?v=aqz-KE-bpKQ", { agent });
+```
+
+### IP Rotation
+
+_Built-in ip rotation won't be updated and will be removed in the future, create your own ip rotation instead._
+
+To implement IP rotation, you need to assign the desired IP address to the `localAddress` property within `undici.Agent.Options`.
+Therefore, you'll need to use a different `ytdl.Agent` for each IP address you want to use.
+
+```js
+const ytdl = require("@distube/ytdl-core");
+const { getRandomIPv6 } = require("@distube/ytdl-core/lib/utils");
+
+const agentForARandomIP = ytdl.createAgent(undefined, {
+  localAddress: getRandomIPv6("2001:2::/48"),
+});
+
+ytdl.getBasicInfo("http://www.youtube.com/watch?v=aqz-KE-bpKQ", { agent: agentForARandomIP });
+
+const agentForAnotherRandomIP = ytdl.createAgent(undefined, {
+  localAddress: getRandomIPv6("2001:2::/48"),
+});
+
+ytdl.getInfo("http://www.youtube.com/watch?v=aqz-KE-bpKQ", { agent: agentForAnotherRandomIP });
 ```
 
 ## API

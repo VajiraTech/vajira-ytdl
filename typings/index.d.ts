@@ -1,14 +1,16 @@
 declare module '@distube/ytdl-core' {
   import { Dispatcher, ProxyAgent, request } from 'undici';
   import { Cookie as CK, CookieJar } from 'tough-cookie';
+  import { CookieAgent } from 'http-cookie-agent/undici';
   import { Readable } from 'stream';
 
   namespace ytdl {
     type Filter = 'audioandvideo' | 'videoandaudio' | 'video' | 'videoonly' | 'audio' | 'audioonly' | ((format: videoFormat) => boolean);
 
     interface Agent {
-      jar: CookieJar;
       dispatcher: Dispatcher;
+      jar: CookieJar;
+      localAddress?: string;
     }
 
     interface getInfoOptions {
@@ -437,9 +439,11 @@ declare module '@distube/ytdl-core' {
     function validateURL(string: string): boolean;
     function getURLVideoID(string: string): string | never;
     function getVideoID(string: string): string | never;
-    function createProxyAgent(options: ProxyAgent.Options | string, cookies?: (Cookie | CK)[]): Agent;
     function createProxyAgent(options: ProxyAgent.Options | string): Agent;
+    function createProxyAgent(options: ProxyAgent.Options | string, cookies?: (Cookie | CK)[]): Agent;
+    function createAgent(): Agent;
     function createAgent(cookies?: (Cookie | CK)[]): Agent;
+    function createAgent(cookies?: (Cookie | CK)[], opts?: CookieAgent.Options): Agent;
     const version: number;
   }
 
