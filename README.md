@@ -145,7 +145,7 @@ You can find the API documentation in the [original repo](https://github.com/fen
 ### `ytdl.getInfoOptions`
 
 - `requestOptions` is now `undici`'s [`RequestOptions`](https://github.com/nodejs/undici#undicirequesturl-options-promise).
-- `agent`: [`ytdl.Agent`](https://github.com/distubejs/ytdl-core/blob/master/typings/index.d.ts#L9-L12)
+- `agent`: [`ytdl.Agent`](https://github.com/distubejs/ytdl-core/blob/master/typings/index.d.ts#L10-L14)
 
 ### `ytdl.createAgent([cookies]): ytdl.Agent`
 
@@ -157,7 +157,7 @@ You can find the API documentation in the [original repo](https://github.com/fen
 
 #### How to implement `ytdl.Agent` with your own Dispatcher
 
-You can find the example [here](https://github.com/distubejs/ytdl-core/blob/master/lib/cookie.js#L66-L78)
+You can find the example [here](https://github.com/distubejs/ytdl-core/blob/master/lib/cookie.js#L73-L86)
 
 ## Limitations
 
