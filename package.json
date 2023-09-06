@@ -7,7 +7,7 @@
     "download",
     "distube"
   ],
-  "version": "4.12.1",
+  "version": "4.13.0",
   "repository": {
     "type": "git",
     "url": "git://github.com/distubejs/ytdl-core.git"
@@ -43,7 +43,7 @@
     "undici": "^5.23.0"
   },
   "devDependencies": {
-    "@types/node": "^20.5.7",
+    "@types/node": "^20.5.9",
     "@types/tough-cookie": "^4.0.2",
     "eslint": "^6.8.0",
     "typescript": "^5.2.2"
