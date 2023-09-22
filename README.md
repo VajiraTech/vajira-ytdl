@@ -51,6 +51,7 @@ const agentOptions = {
   localAddress: "127.0.0.1",
 };
 
+// agent should be created once if you don't want to change your cookie
 const agent = ytdl.createAgent(cookies, agentOptions);
 
 ytdl.getBasicInfo("http://www.youtube.com/watch?v=aqz-KE-bpKQ", { agent });
