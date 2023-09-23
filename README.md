@@ -10,6 +10,12 @@ npm install @distube/ytdl-core@latest
 
 Make sure you're installing the latest version of `@distube/ytdl-core` to keep up with the latest fixes.
 
+### TypeScript Development
+
+```bash
+npm install --save-dev @types/tough-cookie
+```
+
 ## Usage
 
 ```js
