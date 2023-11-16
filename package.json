@@ -38,6 +38,7 @@
   "dependencies": {
     "http-cookie-agent": "^5.0.4",
     "m3u8stream": "^0.8.6",
+    "miniget": "^4.2.3",
     "sax": "^1.2.4",
     "tough-cookie": "^4.1.3",
     "undici": "^5.25.2"
