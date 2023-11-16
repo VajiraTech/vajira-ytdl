@@ -52,5 +52,6 @@
   "engines": {
     "node": ">=12"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "funding": "https://github.com/distubejs/ytdl-core?sponsor=1"
 }
