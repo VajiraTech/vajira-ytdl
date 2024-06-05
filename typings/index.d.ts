@@ -233,7 +233,6 @@ declare module '@distube/ytdl-core' {
       video_url: string;
       age_restricted: boolean;
       likes: number | null;
-      dislikes: number | null;
       media: Media;
       author: Author;
       thumbnails: thumbnail[];
